@@ -8,7 +8,7 @@ The program starts with 2 options in the main menu:
 1. 'r' for recording.
 2. 'a' for action.
 
-#recording option:
+#Recording option:
 
 When the user hit 'm' it saves the current position of the mouse. 
 example: ' 917,418 '
@@ -20,7 +20,7 @@ example: ' m,917,418,252,252,252,1229,169 '
 
 now the user has the option to exit the recording proses or to continue recording the next mouse click
 
-#run option:
+#Action option:
 
 after the user has recorded all the mouse clicks and the pixel color that need to match
 the user can hit 'a' (action) in the main menu and the auto clicker will start to run.
