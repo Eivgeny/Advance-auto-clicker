@@ -1,5 +1,5 @@
 
-
+import os
 import pyautogui
 import time
 import msvcrt
@@ -8,6 +8,7 @@ z = "\n      x             x\n       x           x\n           xxxxx\n         x
 
 
 def rec(_action):
+    #recording mrosses
     x = pyautogui.position()#touple
     color = pyautogui.pixel(x[0],x[1])#touple
     pos = pyautogui.position()#touple
@@ -26,6 +27,7 @@ def rec(_action):
     return st
 
 def writefile(x):
+    #writing to the external file
         text = str()
         for item in x:
             for it in item:
@@ -41,6 +43,7 @@ def writefile(x):
 
 
 def startRec():
+    #recording option
     print('\n** Start recording **\n')
     print("m - for rec movment \nc - for rec cutting \nf - for confrim movment\nn - reset records\ne - exit")
     while True:
@@ -55,7 +58,7 @@ def startRec():
                 writefile(rec('c')) 
                 print('...done')
             if key[2:-1] == 'n':
-                print('Reset record file!')
+                clearCord()
             if key[2:-1] == 'e':
                 print('** exit from rec mode! **\n')
                 break
@@ -65,11 +68,11 @@ def startRec():
 
 
 def txtToCordsList():
+    #reads the external file and make a list of it
     myfile = open("moves.txt", mode="r")
     fromTxtFile = myfile.readlines()
     myfile.close()
     
-    # creating list of list with all the cords // first index are indicator
     cordList = list()
     temp = str()
     for cord in fromTxtFile:
@@ -92,6 +95,7 @@ def cordsList(cordList):
 
 
 def testColor(x,y,regColor):
+    #checking the color of exact position
     pyautogui.moveTo((x,y))
     im = pyautogui.screenshot()
     ls = (int(x),int(y))
@@ -102,6 +106,7 @@ def testColor(x,y,regColor):
         return True
 
 def move(cord):
+    #clicking the exact position after color matches
     print('\n\tmove to cord - ' +str(cord)+'\n')
     x = cord[1]
     y = cord[2]
@@ -125,6 +130,7 @@ def move(cord):
 
 
 def treeCut(cord):
+    #checking if there is a tree and the inventory capacity
     x = cord[1]
     y = cord[2]
     col = (int(cord[3]),int(cord[4]),int(cord[5]))
@@ -153,13 +159,17 @@ def treeCut(cord):
 
 
 def invIsFull(x,y,z):
-    #checking up the inventory
+    #checking if the inventory is full
     if testColor(x,y,z):
         return True
     return False
 
 def clearCord():
-    open('file.txt', 'w').close()
+    if os.path.exists("Moves.txt"):
+        os.remove("Moves.txt")
+        print("Reset file!")
+    else:
+        print("The file does not exist")
 
 
 while True:
