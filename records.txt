@@ -1,0 +1,3 @@
+{"action": "move", "click": [473, 91], "color": [239, 239, 239], "check": [730, 286]}
+{"action": "move", "click": [138, 90], "color": [240, 240, 240], "check": [733, 357]}
+{"action": "move", "click": [604, 84], "color": [239, 239, 239], "check": [734, 371]}
